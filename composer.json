@@ -1,0 +1,25 @@
+{
+    "name": "novomirskoy/finance",
+    "authors": [
+        {
+            "name": "Endin Artyom",
+            "email": "artyom.endin@gmail.com"
+        }
+    ],
+    "require": {
+        "scheb/yahoo-finance-api": "1.2.*",
+        "symfony/console": "3.0.*",
+        "zendframework/zend-servicemanager": "3.0.*",
+        "zendframework/zend-stdlib": "3.0.*",
+        "doctrine/orm": "2.5.*"
+    },
+    "require-dev": {
+        "psy/psysh": "0.7.*",
+        "symfony/var-dumper": "3.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novomirskoy\\Finance\\": "src/"
+        }
+    }
+}
