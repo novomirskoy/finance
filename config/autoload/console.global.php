@@ -1,10 +1,17 @@
 <?php
 
+use Novomirskoy\Finance\Command\Factory;
+use Novomirskoy\Finance\Command;
+
 return [
     'dependencies' => [
-        'factories' => [],
+        'factories' => [
+            Command\GeneratePhpstormMeta::class => Command\Factory\GeneratePhpstormMetaFactory::class,
+        ],
     ],
     'console' => [
-        'commands' => [],
+        'commands' => [
+            Command\GeneratePhpstormMeta::class,
+        ],
     ],
 ];
