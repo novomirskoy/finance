@@ -1,10 +1,16 @@
 <?php
 
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 return [
     'dependencies' => [
-        'factories' => [],
+        'factories' => [
+            Novomirskoy\Finance\Command\TestCommand::class => InvokableFactory::class
+        ],
     ],
     'console' => [
-        'commands' => [],
+        'commands' => [
+            Novomirskoy\Finance\Command\TestCommand::class
+        ],
     ],
 ];
