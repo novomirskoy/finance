@@ -1,19 +1,19 @@
 <?php
 
-namespace Novomirskoy\Finance\Command\Factory;
+namespace Novomirskoy\Finance\Container;
 
+use Doctrine\Common\Cache\ArrayCache;
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
-use Novomirskoy\Finance\Command\GeneratePhpstormMeta;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Class GeneratePhpstormMetaFactory
- * @package Novomirskoy\Finance\Command\Factory
+ * Class DoctrineArrayCacheFactory
+ * @package Novomirskoy\Finance\Container
  */
-class GeneratePhpstormMetaFactory implements FactoryInterface
+class DoctrineArrayCacheFactory implements FactoryInterface
 {
     /**
      * Create an object
@@ -29,6 +29,6 @@ class GeneratePhpstormMetaFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new GeneratePhpstormMeta(null, $container->get('config')['dependencies']);
+        return new ArrayCache();
     }
 }

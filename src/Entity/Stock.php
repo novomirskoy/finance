@@ -5,17 +5,34 @@ namespace Novomirskoy\Finance\Entity;
 
 use DateTime;
 use Novomirskoy\Finance\Model\StockInterface;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Stock
  * @package Novomirskoy\Finance\Entity
+ * 
+ * @ORM\Entity()
+ * @ORM\Table(name="stock")
  */
 class Stock implements StockInterface
 {
     /**
+     * Идентификатор
+     * 
+     * @var int
+     * 
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(name="id")
+     */
+    protected $id;
+    
+    /**
      * Дата
      *
      * @var DateTime
+     * 
+     * @ORM\Column(name="date", type="datetime")
      */
     protected $date;
 
@@ -23,6 +40,8 @@ class Stock implements StockInterface
      * Цена открытия
      *
      * @var string
+     * 
+     * @ORM\Column(name="open", type="string")
      */
     protected $open;
 
@@ -30,6 +49,8 @@ class Stock implements StockInterface
      * Максимальная цена
      *
      * @var string
+     * 
+     * @ORM\Column(name="high", type="string")
      */
     protected $high;
 
@@ -37,6 +58,8 @@ class Stock implements StockInterface
      * Минимальная цена
      * 
      * @var string
+     * 
+     * @ORM\Column(name="low", type="string")
      */
     protected $low;
 
@@ -44,6 +67,8 @@ class Stock implements StockInterface
      * Цена закрытия
      * 
      * @var string
+     * 
+     * @ORM\Column(name="close", type="string")
      */
     protected $close;
 
@@ -51,6 +76,8 @@ class Stock implements StockInterface
      * Биржевой объем
      * 
      * @var string
+     * 
+     * @ORM\Column(name="volume", type="string")
      */
     protected $volume;
 
@@ -58,8 +85,18 @@ class Stock implements StockInterface
      * Скорректированная цена закрытия
      * 
      * @var string
+     * 
+     * @ORM\Column(name="adjusted_close", type="string")
      */
     protected $adjustedClose;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * @return DateTime

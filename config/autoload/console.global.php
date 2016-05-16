@@ -7,11 +7,13 @@ return [
     'dependencies' => [
         'factories' => [
             Command\GeneratePhpstormMeta::class => Command\Factory\GeneratePhpstormMetaFactory::class,
+            Command\ClearApplicationCache::class => Command\Factory\ClearApplicationCacheFactory::class,
         ],
     ],
     'console' => [
         'commands' => [
             Command\GeneratePhpstormMeta::class,
+            Command\ClearApplicationCache::class,
         ],
     ],
 ];
