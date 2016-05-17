@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Stock
  * @package Novomirskoy\Finance\Entity
  * 
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Novomirskoy\Finance\Repository\StockRepository")
  * @ORM\Table(name="stock")
  */
 class Stock implements StockInterface

@@ -15,6 +15,7 @@
         "container-interop/container-interop": "1.1.*",
         "symfony/filesystem": "3.0.*",
         "symfony/finder": "3.0.*",
+        "zendframework/zend-hydrator": "2.2.*"
     },
     "require-dev": {
         "psy/psysh": "0.7.*",
