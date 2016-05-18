@@ -2,6 +2,8 @@
 
 namespace Novomirskoy\Finance\Command;
 
+use DateTime;
+use League\Period\Period;
 use Novomirskoy\Finance\Entity\Stock;
 use Novomirskoy\Finance\Hydrator\StockHydrator;
 use Novomirskoy\Finance\Model\StockRepositoryInterface;
@@ -68,7 +70,7 @@ class GetQuotes extends Command
                 null,
                 InputOption::VALUE_OPTIONAL,
                 '',
-                (new \DateTime())->format('Y-m-d')
+                (new DateTime())->format('Y-m-d')
             )
         ;
     }
@@ -92,24 +94,20 @@ class GetQuotes extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $api = $this->yahooApiClient;
-
         $symbol = $input->getOption('symbol');
-        $start = new \DateTime($input->getOption('start'));
-        $end = new \DateTime($input->getOption('end'));
+        $start = new DateTime($input->getOption('start'));
+        $end = new DateTime($input->getOption('end'));
 
-        $result = $api->getHistoricalData($symbol, $start, $end);
-        
-        if ($result['query']['count'] === 0) {
+        $result = $this->getQuotes($symbol, $start, $end);
+
+        if (count($result) === 0) {
             $output->writeln('<info>Котировки не найдены</info>');
             exit();
         }
-
-        $quotes = $result['query']['results'];
         
-        foreach ($quotes['quote'] as $quote) {
+        foreach ($result as $quote) {
             if (!is_array($quote)) {
-                $stock = $this->saveStock($quotes['quote']);
+                $stock = $this->saveStock($result['quote']);
                 $output->writeln(sprintf('<info>Сохранение котировки от: %s</info>', $stock->getDate()->format('Y-m-d')));
                 
                 break;
@@ -130,8 +128,42 @@ class GetQuotes extends Command
         $stock = (new StockHydrator())
             ->hydrate($data, new Stock());
 
-        $this->stockRepository->store($stock);
+        if (!$this->stockRepository->findOneBy(['date' => $stock->getDate()])) {
+            $this->stockRepository->store($stock);    
+        }
         
         return $stock;
+    }
+
+    /**
+     * @param string $symbol
+     * @param DateTime $start
+     * @param DateTime $end
+     * 
+     * @return array
+     */
+    private function getQuotes(string $symbol, DateTime $start, DateTime $end): array
+    {
+        $api = $this->yahooApiClient;
+        $result = [];
+
+        $period = new Period($start, $end);
+
+        /** @var Period $interval */
+        foreach ($period->split('1 year') as $interval) {
+            $start = new DateTime($interval->getStartDate()->format(DATE_W3C));
+            $end = new DateTime($interval->getEndDate()->format(DATE_W3C));
+            
+            $quotes = $api->getHistoricalData($symbol, $start, $end);
+            sleep(2);
+
+            if ($quotes['query']['count'] === 0) {
+                break;
+            }
+
+            $result = array_merge($result, $quotes['query']['results']['quote']);
+        }
+
+        return $result;
     }
 }

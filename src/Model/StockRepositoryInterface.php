@@ -2,11 +2,13 @@
 
 namespace Novomirskoy\Finance\Model;
 
+use Doctrine\Common\Persistence\ObjectRepository;
+
 /**
  * Interface StockRepositoryInterface
  * @package Novomirskoy\Finance\Model
  */
-interface StockRepositoryInterface
+interface StockRepositoryInterface extends ObjectRepository
 {
     /**
      * Сохранение котировки
