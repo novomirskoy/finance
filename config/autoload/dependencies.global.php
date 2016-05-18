@@ -1,13 +1,20 @@
 <?php
 
-use Novomirskoy\Finance\Repository;
 use Novomirskoy\Finance\Model;
+use Novomirskoy\Finance\Repository;
+use Zend\Expressive\Application;
+use Zend\Expressive\Container\ApplicationFactory;
+use Zend\Expressive\Helper;
 
 return [
     'dependencies' => [
+        'invokables' => [
+            Helper\ServerUrlHelper::class => Helper\ServerUrlHelper::class,
+        ],
+        
         'factories' => [
-            Doctrine\Common\Cache\Cache::class => Novomirskoy\Finance\Container\DoctrineArrayCacheFactory::class,
-            Doctrine\ORM\EntityManager::class => Novomirskoy\Finance\Container\DoctrineFactory::class,
+            Application::class => ApplicationFactory::class,
+            Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
             
             Model\StockRepositoryInterface::class => Repository\StockRepositoryFactory::class,
         ],

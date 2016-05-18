@@ -150,7 +150,7 @@ class GetQuotes extends Command
         $period = new Period($start, $end);
 
         /** @var Period $interval */
-        foreach ($period->split('1 year') as $interval) {
+        foreach ($period->split('1 month') as $interval) {
             $start = new DateTime($interval->getStartDate()->format(DATE_W3C));
             $end = new DateTime($interval->getEndDate()->format(DATE_W3C));
             
