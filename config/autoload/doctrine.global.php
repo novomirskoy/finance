@@ -26,5 +26,9 @@ return [
         'cache' => [
 
         ],
+
+        'fixture' => [
+            __DIR__ . '/../../src/DataFixtures/ORM',
+        ],
     ],
 ];

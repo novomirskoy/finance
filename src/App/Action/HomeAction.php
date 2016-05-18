@@ -46,9 +46,9 @@ class HomeAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-//        if (!$this->template) {
-//            return new JsonResponse(['ack' => time()]);
-//        }
+        if (!$this->template) {
+            return new JsonResponse(['ack' => time()]);
+        }
 
         return new HtmlResponse($this->template->render('app::home-page', ['ack' => time()]));
     }

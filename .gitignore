@@ -2,3 +2,4 @@
 .idea/
 /config/autoload/*.local.php
 /config/autoload/local.php
+composer.lock
