@@ -3,3 +3,4 @@
 /config/autoload/*.local.php
 /config/autoload/local.php
 composer.lock
+/bower_components/

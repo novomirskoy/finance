@@ -19,6 +19,12 @@ return [
             'path' => '/',
             'middleware' => App\Action\HomeAction::class,
             'allowed_methods' => ['GET'],
-        ]
+        ],
+        [
+            'name' => 'createUser',
+            'path' => '/user/create',
+            'middleware' => App\Action\User\CreateAction::class,
+            'allowed_methods' => ['GET'],
+        ],
     ],
 ];
