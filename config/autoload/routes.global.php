@@ -26,5 +26,11 @@ return [
             'middleware' => App\Action\User\CreateAction::class,
             'allowed_methods' => ['GET'],
         ],
+        [
+            'name' => 'user/register',
+            'path' => 'user/register',
+            'middleware' => App\Action\User\RegisterAction::class,
+            'allowed_methods' => ['GET'],
+        ]
     ],
 ];

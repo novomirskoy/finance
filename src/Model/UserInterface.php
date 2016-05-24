@@ -10,6 +10,20 @@ namespace Novomirskoy\Finance\Model;
 interface UserInterface
 {
     /**
+     * Получение имени
+     * 
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
+     * Получение фамилии
+     * 
+     * @return string
+     */
+    public function getLastName(): string;
+    
+    /**
      * Получение имени пользователя
      * 
      * @return string
@@ -22,4 +36,11 @@ interface UserInterface
      * @return string
      */
     public function getPassword(): string;
+
+    /**
+     * Получение Email
+     * 
+     * @return string
+     */
+    public function getEmail(): string;
 }

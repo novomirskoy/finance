@@ -27,6 +27,24 @@ class User implements UserInterface
     protected $id;
 
     /**
+     * Имя
+     * 
+     * @var string
+     * 
+     * @ORM\Column(name="name", type="string", nullable=true)
+     */
+    protected $name;
+
+    /**
+     * Фамилия
+     * 
+     * @var string
+     * 
+     * @ORM\Column(name="last_name", type="string", nullable=true)
+     */
+    protected $lastName;
+
+    /**
      * Имя пользователя
      *
      * @var string
@@ -45,11 +63,60 @@ class User implements UserInterface
     protected $password;
 
     /**
+     * Email
+     * 
+     * @var string
+     * 
+     * @ORM\Column(name="email", type="string", unique=true, nullable=true)
+     */
+    protected $email;
+
+    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * 
+     * @return $this
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     * 
+     * @return $this
+     */
+    public function setLastName(string $lastName)
+    {
+        $this->lastName = $lastName;
+        
+        return $this;
     }
 
     /**
@@ -87,6 +154,26 @@ class User implements UserInterface
     public function setPassword(string $password)
     {
         $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * 
+     * @return $this
+     */
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+        
         return $this;
     }
 }
