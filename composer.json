@@ -18,22 +18,30 @@
         "zendframework/zend-expressive-fastroute": "^1.1",
         "zendframework/zend-expressive-twigrenderer": "^1.1",
         "zendframework/zend-form": "^2.8",
+        "zendframework/zend-crypt": "^2.6",
         "doctrine/orm": "2.5.*",
         "container-interop/container-interop": "1.1.*",
         "symfony/filesystem": "3.0.*",
         "symfony/finder": "3.0.*",
-        "league/period": "3.2.*"
+        "league/period": "3.2.*",
+        "jeremykendall/slim-auth": "1.0.*"
     },
     "require-dev": {
         "psy/psysh": "0.7.*",
         "symfony/var-dumper": "3.0.*",
         "filp/whoops": "2.1.*",
-        "doctrine/data-fixtures": "^1.1"
+        "doctrine/data-fixtures": "^1.1",
+        "phpunit/phpunit": "^5.3"
     },
     "autoload": {
         "psr-4": {
             "Novomirskoy\\Finance\\": "src/",
             "App\\": "src/App/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AppTest\\": "test/AppTest/"
         }
     }
 }
